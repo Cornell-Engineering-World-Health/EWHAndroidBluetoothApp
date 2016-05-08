@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EWHBluetoothAppOfficial-justin.iml" filepath="$PROJECT_DIR$/EWHBluetoothAppOfficial-justin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EWHAndroidBluetoothApp.iml" filepath="$PROJECT_DIR$/EWHAndroidBluetoothApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

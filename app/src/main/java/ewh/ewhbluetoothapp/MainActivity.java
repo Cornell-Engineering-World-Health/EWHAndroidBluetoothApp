@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView);
 
-        //Intent intent = new Intent(MainActivity.this, SendServer.class);
-        //startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, SendServer.class);
+        startActivity(intent);
 
         /* UNCOMMENT FOR FRONTEND TESTING
         frontEndListItems.add("Well Monitor");
@@ -93,32 +93,33 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(frontEndAdapter);
         **/
 
-        adapter = BluetoothAdapter.getDefaultAdapter();
-        adapter.startDiscovery();
+        /* COMMENT OUT FOR EMULATOR */
+//        adapter = BluetoothAdapter.getDefaultAdapter();
+//        adapter.startDiscovery();
 
 
 
-        //Facilitate communication between components
-        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        registerReceiver(mReceiver, filter);   // mReceiver will be called with any broadcast Intent that matches filter
-
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                String itemSelected = (String) listView.getAdapter().getItem(position);
-                System.out.println("Item selected: " + itemSelected);
-
-                getJson(position);
-
-                System.out.println("RECIEVED MESSAGE:::::::" + recievedMessage);
-
-                //recievedMessage = "[{\"temperature\":78}]";
-
-                Intent intent = new Intent(MainActivity.this, MetricListActivity.class);
-                startActivity(intent);
-            }
-        });
+//        //Facilitate communication between components
+//        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+//        registerReceiver(mReceiver, filter);   // mReceiver will be called with any broadcast Intent that matches filter
+//
+//        listView.setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                String itemSelected = (String) listView.getAdapter().getItem(position);
+//                System.out.println("Item selected: " + itemSelected);
+//
+//                getJson(position);
+//
+//                System.out.println("RECIEVED MESSAGE:::::::" + recievedMessage);
+//
+//                //recievedMessage = "[{\"temperature\":78}]";
+//
+//                Intent intent = new Intent(MainActivity.this, MetricListActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override
