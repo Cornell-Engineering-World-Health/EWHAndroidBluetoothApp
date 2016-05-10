@@ -113,8 +113,14 @@ public class MainActivity extends AppCompatActivity {
 
                 System.out.println("RECIEVED MESSAGE:::::::" + recievedMessage);
 
-                //recievedMessage = "[{\"temperature\":78}]";
-
+                recievedMessage = "[{\"temperature\":78}]";
+/*
+                recievedMessage = "[{\"TEMPERATURE\":\"20\"," +
+                        "\"PH\":\"30\"," +
+                        "\"TURBIDITY\":\"40\"," +
+                        "\"CONDUCTIVITY\":\"50\"," +
+                        "\"USAGE\":\"60\"}]";
+**/
                 Intent intent = new Intent(MainActivity.this, MetricListActivity.class);
                 startActivity(intent);
             }
