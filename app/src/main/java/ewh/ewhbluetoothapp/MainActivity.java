@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView);
 
-        //Intent intent = new Intent(MainActivity.this, SendServer.class);
-        //startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, SendServer.class);
+        startActivity(intent);
 
         /* UNCOMMENT FOR FRONTEND TESTING
         frontEndListItems.add("Well Monitor");

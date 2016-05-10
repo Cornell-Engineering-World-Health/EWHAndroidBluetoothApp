@@ -47,10 +47,10 @@ public class SendServer extends AppCompatActivity {
     Button button;
     TextView value;
     String strValue = "{\"TEMPERATURE\":\"20\"," +
-                        "\"PH\":\"30\"," +
-                        "\"TURBIDITY\":\"40\"," +
-                        "\"CONDUCTIVITY\":\"50\"," +
-                        "\"USAGE\":\"60\"}";
+            "\"PH\":\"30\"," +
+            "\"TURBIDITY\":\"40\"," +
+            "\"CONDUCTIVITY\":\"50\"," +
+            "\"USAGE\":\"60\"}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,7 @@ public class SendServer extends AppCompatActivity {
         setContentView(R.layout.activity_send_server);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+        System.out.println("FIRST");
 
         value = (TextView) findViewById(R.id.value1);
         button = (Button) findViewById(R.id.sendData);
@@ -83,28 +84,28 @@ public class SendServer extends AppCompatActivity {
 
     public void sendData(View v) {
         //strValue = value.getText().toString();
-
-        String stringToReverse = "hithere";
+        System.out.println("SENDING DATA");
+        String stringToReverse = "[{'temperature' : 78, 'turbidity': 4, 'conductivity' : 7, 'sodium' : 5, 'calcium' : 2, 'magnesium' : 10, 'calcium' : 7, 'pH' : 7.5, 'timestamp' : '2015-11-11T12:00:00Z', 'usage': 30}]";
 
         URL url = null;
         try {
-            url = new URL("http://requestb.in/133sa1w1");
+            url = new URL("http://ec2-54-86-133-189.compute-1.amazonaws.com:8080/load/WaterQuality");
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
-
+            //System.out.println("BEFORE WRITER");
             OutputStreamWriter out = new OutputStreamWriter(
-                connection.getOutputStream());
-        out.write("string=" + stringToReverse);
-        out.close();
+                    connection.getOutputStream());
+            out.write("string=" + stringToReverse);
+            out.close();
 
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(
-                        connection.getInputStream()));
-        String decodedString;
-        while ((decodedString = in.readLine()) != null) {
-            System.out.println(decodedString);
-        }
-        in.close();
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(
+                            connection.getInputStream()));
+            String decodedString;
+            while ((decodedString = in.readLine()) != null) {
+                System.out.println(decodedString);
+            }
+            in.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -137,7 +138,7 @@ public class SendServer extends AppCompatActivity {
             BufferedReader reader = null;
             try {
                 // Open URL connection
-                URL url = new URL("http://requestb.in/x3f01gx3");
+                URL url = new URL("http://ec2-54-86-133-189.compute-1.amazonaws.com:8080/load/WaterQuality");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 //urlConnection.setDoOutput(true);
 
@@ -145,20 +146,23 @@ public class SendServer extends AppCompatActivity {
                 //urlConnection.setRequestMethod("POST");
                 //urlConnection.setRequestProperty("TO SET", "TO SET");
 
-                urlConnection.setDoOutput( true );
-                urlConnection.setInstanceFollowRedirects( false );
-                urlConnection.setRequestMethod( "POST" );
-                urlConnection.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+                urlConnection.setDoOutput(true);
+                urlConnection.setInstanceFollowRedirects(false);
+                urlConnection.setRequestMethod("POST");
+//                urlConnection.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+                urlConnection.setRequestProperty( "Content-Type", "application/json");
+
                 urlConnection.setRequestProperty( "charset", "utf-8");
                 //urlConnection.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
                 urlConnection.setUseCaches( false );
 
                 // Write json data
-            //   Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
-            //    writer.write("poisdjf");
-
+                //   Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
+                //    writer.write("poisdjf");
+//CHECK IF VALID JSON ENCODING
                 try( DataOutputStream wr = new DataOutputStream( urlConnection.getOutputStream())) {
-                    wr.writeChars("ljsdfksdfjlsdkj");
+                    wr.writeChars(
+                    "[{'temperature' : 78, 'turbidity': 4, 'conductivity' : 7, 'sodium' : 5, 'calcium' : 2, 'magnesium' : 10, 'calcium' : 7, 'pH' : 7.5, 'timestamp' : '2015-11-11T12:00:00Z', 'usage': 30}]");
                 }
                 catch (Exception e)
                 {
@@ -167,7 +171,7 @@ public class SendServer extends AppCompatActivity {
 
                 System.out.println("SENT TO SERVER");
 
-            //    writer.close();
+                //    writer.close();
 
                 /*
                 // Input Stream
